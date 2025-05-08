@@ -1,8 +1,8 @@
-import { server$ } from '@qwik.dev/router';
 import { isBrowser } from '@qwik.dev/core/build';
+import { server$ } from '@qwik.dev/router';
 import type { DocumentNode } from 'graphql/index';
 import { print } from 'graphql/index';
-import { AUTH_TOKEN, DEV_API, HEADER_AUTH_TOKEN_KEY, PROD_API } from '~/constants';
+import { AUTH_TOKEN, CHANNEL_TOKEN, DEV_API, HEADER_AUTH_TOKEN_KEY, PROD_API } from '~/constants';
 import type { Options as RequesterOptions } from '~/graphql-wrapper';
 import { getCookie, setCookie } from '.';
 
@@ -16,7 +16,7 @@ const shopApi = `${baseUrl}/shop-api`;
 export const requester = async <R, V>(
 	doc: DocumentNode,
 	vars?: V,
-	options: RequesterOptions = { token: '', apiUrl: shopApi, channelToken: '' }
+	options: RequesterOptions = { token: '', apiUrl: shopApi, channelToken: CHANNEL_TOKEN }
 ): Promise<R> => {
 	options.apiUrl = options?.apiUrl ?? shopApi;
 	return execute<R, V>({ query: print(doc), variables: vars }, options);
