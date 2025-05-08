@@ -13,6 +13,7 @@ export const DEFAULT_METADATA_TITLE = 'Oilios.sk';
 export const DEFAULT_METADATA_DESCRIPTION = 'The Best Extra Virgin Olive Oils';
 export const DEFAULT_METADATA_IMAGE = '/social-image.png';
 export const DEFAULT_LOCALE = 'en';
+export const CHANNEL_TOKEN = 'oilios.sk';
 export const DEV_API = ENV_VARIABLES.VITE_VENDURE_DEV_URL || 'http://localhost:3000';
 export const PROD_API = ENV_VARIABLES.VITE_VENDURE_PROD_URL || 'http://localhost:3000';
 export const LOCAL_API = ENV_VARIABLES.VITE_VENDURE_LOCAL_URL || 'http://localhost:3000';
