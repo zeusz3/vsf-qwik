@@ -12,7 +12,7 @@ export const getCollectionBySlug = async (slug: string) => {
 
 gql`
 	query collections {
-		collections {
+		collections(options: { take: 25 }) {
 			items {
 				id
 				name
