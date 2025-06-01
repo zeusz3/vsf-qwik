@@ -21,7 +21,7 @@ export const getAvailableCountriesQuery = async () => {
 };
 
 export const addPaymentToOrderMutation = async (
-	input: PaymentInput = { method: 'pay-on-pickup', metadata: {} }
+	input: PaymentInput = { method: 'standard-payment', metadata: {} }
 ) => {
 	return shopSdk
 		.addPaymentToOrder({ input })

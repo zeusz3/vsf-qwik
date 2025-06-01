@@ -41,6 +41,7 @@ export default component$<Props>(({ appState }) => {
 						<span class="flex-1 flex">
 							<span class="flex flex-col">
 								<span class="block text-sm font-medium text-gray-900">{method.name}</span>
+								<span class="block text-sm font-medium text-gray-900">{method.description}</span>
 								<span class="mt-6 text-sm font-medium text-gray-900">
 									{formatPrice(method.priceWithTax, currencyCode)}
 								</span>
