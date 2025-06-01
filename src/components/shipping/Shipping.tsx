@@ -11,7 +11,8 @@ import { APP_STATE, CUSTOMER_NOT_DEFINED_ID } from '~/constants';
 import { Address, CreateAddressInput, CreateCustomerInput } from '~/generated/graphql';
 import { getActiveCustomerAddressesQuery } from '~/providers/shop/customer/customer';
 import { getActiveOrderQuery } from '~/providers/shop/orders/order';
-import { isActiveCustomerValid } from '~/utils';
+import { isActiveCustomerValid, isShippingAddressValid } from '~/utils';
+import AddressForm from '../address-form/AddressForm';
 import LockClosedIcon from '../icons/LockClosedIcon';
 import ShippingMethodSelector from '../shipping-method-selector/ShippingMethodSelector';
 
@@ -88,7 +89,8 @@ export default component$<IProps>(({ onForward$ }) => {
 				countryCode: appState.availableCountries[0].code,
 			};
 		}
-		isFormValidSignal.value = isActiveCustomerValid(appState.customer);
+		isFormValidSignal.value =
+			isShippingAddressValid(appState.shippingAddress) && isActiveCustomerValid(appState.customer);
 	});
 
 	return (
@@ -146,10 +148,9 @@ export default component$<IProps>(({ onForward$ }) => {
 
 			<input type="hidden" name="action" value="setCheckoutShipping" />
 			<div class="mt-10 border-t border-gray-200 pt-10">
-				<h2 class="text-lg font-medium text-gray-900">{$localize`Pay by bank transfer`}</h2>
-				<div>bank details</div>
+				<h2 class="text-lg font-medium text-gray-900">{$localize`Shipping information`}</h2>
 			</div>
-
+			<AddressForm shippingAddress={appState.shippingAddress} />
 			<div class="mt-10 border-t border-gray-200 pt-10">
 				<ShippingMethodSelector appState={appState} />
 			</div>
@@ -158,7 +159,7 @@ export default component$<IProps>(({ onForward$ }) => {
 				class="bg-primary-600 hover:bg-primary-700 flex w-full items-center justify-center space-x-2 mt-24 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:bg-slate-300"
 				onClick$={$(() => {
 					if (isFormValidSignal.value) {
-						const { emailAddress, firstName, lastName } = appState.customer;
+						const { emailAddress, firstName, lastName, phoneNumber, title } = appState.customer;
 						const {
 							fullName,
 							streetLine1,
@@ -176,6 +177,8 @@ export default component$<IProps>(({ onForward$ }) => {
 							emailAddress: emailAddress ?? '',
 							firstName,
 							lastName,
+							phoneNumber,
+							title,
 						};
 						const createShippingInput: CreateAddressInput = {
 							fullName,
@@ -196,7 +199,7 @@ export default component$<IProps>(({ onForward$ }) => {
 				disabled={!isFormValidSignal.value}
 			>
 				<LockClosedIcon />
-				<span>{$localize`Order`}</span>
+				<span>{$localize`Proceed to payment`}</span>
 			</button>
 		</div>
 	);

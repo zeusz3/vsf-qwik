@@ -7,7 +7,7 @@ import ChevronRightIcon from '~/components/icons/ChevronRightIcon';
 import { Order } from '~/generated/graphql';
 import { getOrderByCodeQuery } from '~/providers/shop/orders/order';
 
-type Step = 'OVERVIEW' | 'CONFIRMATION';
+type Step = 'SHIPPING' | 'PAYMENT' | 'CONFIRMATION';
 
 export default component$<{ onForward$: QRL<() => void> }>(() => {
 	const {
@@ -16,7 +16,8 @@ export default component$<{ onForward$: QRL<() => void> }>(() => {
 	const store = useStore<{ order?: Order }>({});
 
 	const steps: { name: string; state: Step }[] = [
-		{ name: $localize`Order Overview`, state: 'OVERVIEW' },
+		{ name: $localize`Shipping Checkout`, state: 'SHIPPING' },
+		{ name: $localize`Payment`, state: 'PAYMENT' },
 		{ name: $localize`Confirmation`, state: 'CONFIRMATION' },
 	];
 
