@@ -3,6 +3,7 @@ import { useNavigate } from '@qwik.dev/router';
 import CartContents from '~/components/cart-contents/CartContents';
 import CartTotals from '~/components/cart-totals/CartTotals';
 import ChevronRightIcon from '~/components/icons/ChevronRightIcon';
+import Payment from '~/components/payment/Payment';
 import Shipping from '~/components/shipping/Shipping';
 import { APP_STATE, CUSTOMER_NOT_DEFINED_ID } from '~/constants';
 import { CreateAddressInput, CreateCustomerInput } from '~/generated/graphql';
@@ -16,14 +17,15 @@ import {
 } from '~/providers/shop/orders/order';
 import { isEnvVariableEnabled } from '~/utils';
 
-type Step = 'OVERVIEW' | 'CONFIRMATION';
+type Step = 'SHIPPING' | 'PAYMENT' | 'CONFIRMATION';
 
 export default component$(() => {
 	const navigate = useNavigate();
 	const appState = useContext(APP_STATE);
-	const state = useStore<{ step: Step }>({ step: 'OVERVIEW' });
+	const state = useStore<{ step: Step }>({ step: 'SHIPPING' });
 	const steps: { name: string; state: Step }[] = [
-		{ name: $localize`Order Overview`, state: 'OVERVIEW' },
+		{ name: $localize`Shipping Checkout`, state: 'SHIPPING' },
+		{ name: $localize`Payment`, state: 'PAYMENT' },
 		{ name: $localize`Confirmation`, state: 'CONFIRMATION' },
 	];
 
@@ -55,7 +57,8 @@ export default component$(() => {
 							<ol class="flex space-x-4 justify-center">
 								{steps.map((step, index) => (
 									<div key={index}>
-										{isEnvVariableEnabled('VITE_SHOW_PAYMENT_STEP') && (
+										{(isEnvVariableEnabled('VITE_SHOW_PAYMENT_STEP') ||
+											step.state !== 'PAYMENT') && (
 											<li key={step.name} class="flex items-center">
 												<span class={`${step.state === state.step ? 'text-primary-600' : ''}`}>
 													{step.name}
@@ -69,7 +72,7 @@ export default component$(() => {
 						</nav>
 						<div class="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
 							<div class={state.step === 'CONFIRMATION' ? 'lg:col-span-2' : ''}>
-								{state.step === 'OVERVIEW' ? (
+								{state.step === 'SHIPPING' ? (
 									<Shipping
 										onForward$={async (
 											customer: CreateCustomerInput,
@@ -83,7 +86,12 @@ export default component$(() => {
 													await setOrderShippingAddressMutation(shippingAddress);
 
 												if (setOrderShippingAddress.__typename === 'Order') {
-													confirmPayment();
+													if (isEnvVariableEnabled('VITE_SHOW_PAYMENT_STEP')) {
+														state.step = 'PAYMENT';
+														window && window.scrollTo(0, 0);
+													} else {
+														confirmPayment();
+													}
 												}
 											};
 
@@ -97,6 +105,8 @@ export default component$(() => {
 											}
 										}}
 									/>
+								) : state.step === 'PAYMENT' ? (
+									<Payment onForward$={confirmPayment} />
 								) : (
 									<div></div>
 								)}
