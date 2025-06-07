@@ -8,6 +8,7 @@ lib
 server
 functions/**/*.js
 tmp
+.env.*.local
 
 # Development
 node_modules
