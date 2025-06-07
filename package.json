@@ -44,8 +44,6 @@
 		"@graphql-codegen/introspection": "^4.0.2",
 		"@graphql-codegen/typescript": "^4.0.4",
 		"@graphql-codegen/typescript-operations": "^4.1.2",
-		"@qwik.dev/core": "2.0.0-alpha.8",
-		"@qwik.dev/router": "2.0.0-alpha.8",
 		"@tailwindcss/forms": "^0.5.7",
 		"@types/braintree-web-drop-in": "^1.39.3",
 		"@types/compression": "^1.7.2",
