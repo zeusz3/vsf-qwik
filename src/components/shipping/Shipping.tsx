@@ -15,6 +15,7 @@ import { isActiveCustomerValid, isShippingAddressValid } from '~/utils';
 import AddressForm from '../address-form/AddressForm';
 import LockClosedIcon from '../icons/LockClosedIcon';
 import ShippingMethodSelector from '../shipping-method-selector/ShippingMethodSelector';
+import Packeta from '../packeta/Packeta';
 
 type IProps = {
 	onForward$: QRL<
@@ -150,9 +151,12 @@ export default component$<IProps>(({ onForward$ }) => {
 			<div class="mt-10 border-t border-gray-200 pt-10">
 				<h2 class="text-lg font-medium text-gray-900">{$localize`Shipping information`}</h2>
 			</div>
-			<AddressForm shippingAddress={appState.shippingAddress} />
+			{/* <AddressForm shippingAddress={appState.shippingAddress} /> */}
 			<div class="mt-10 border-t border-gray-200 pt-10">
 				<ShippingMethodSelector appState={appState} />
+			</div>
+			<div>
+				<Packeta />
 			</div>
 
 			<button
