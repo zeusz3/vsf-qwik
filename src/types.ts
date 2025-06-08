@@ -222,6 +222,7 @@ export type RegisterCustomer = Omit<ActiveCustomer, 'id'> & {
 };
 
 export type EligibleShippingMethods = {
+	code: string;
 	description: string;
 	id: string;
 	name: string;
