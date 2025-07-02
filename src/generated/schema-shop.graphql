@@ -4231,7 +4231,6 @@ type ProvinceList implements PaginatedList {
 
 type PublicPaymentMethod {
 	code: String!
-	customFields: JSON
 	description: String
 	id: ID!
 	name: String!
@@ -4240,7 +4239,6 @@ type PublicPaymentMethod {
 
 type PublicShippingMethod {
 	code: String!
-	customFields: JSON
 	description: String
 	id: ID!
 	name: String!
