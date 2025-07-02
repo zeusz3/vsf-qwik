@@ -15,7 +15,6 @@ import { isActiveCustomerValid, isShippingAddressValid } from '~/utils';
 import AddressForm from '../address-form/AddressForm';
 import LockClosedIcon from '../icons/LockClosedIcon';
 import ShippingMethodSelector from '../shipping-method-selector/ShippingMethodSelector';
-import Packeta from '../packeta/Packeta';
 
 type IProps = {
 	onForward$: QRL<
@@ -149,15 +148,12 @@ export default component$<IProps>(({ onForward$ }) => {
 
 			<input type="hidden" name="action" value="setCheckoutShipping" />
 			<div class="mt-10 border-t border-gray-200 pt-10">
-				<h2 class="text-lg font-medium text-gray-900">{$localize`Shipping information`}</h2>
-			</div>
-			{/* <AddressForm shippingAddress={appState.shippingAddress} /> */}
-			<div class="mt-10 border-t border-gray-200 pt-10">
 				<ShippingMethodSelector appState={appState} />
 			</div>
-			<div>
-				<Packeta />
+			<div class="mt-10 border-t border-gray-200 pt-10">
+				<h2 class="text-lg font-medium text-gray-900">{$localize`Shipping information`}</h2>
 			</div>
+			<AddressForm shippingAddress={appState.shippingAddress} />
 
 			<button
 				class="bg-primary-600 hover:bg-primary-700 flex w-full items-center justify-center space-x-2 mt-24 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:bg-slate-300"
