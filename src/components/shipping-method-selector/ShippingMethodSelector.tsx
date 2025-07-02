@@ -1,19 +1,48 @@
-import { component$, useStore, useTask$ } from '@qwik.dev/core';
+import { component$, useStore, useTask$, $ } from '@qwik.dev/core';
 import { getEligibleShippingMethodsQuery } from '~/providers/shop/checkout/checkout';
 import { setOrderShippingMethodMutation } from '~/providers/shop/orders/order';
 import { AppState, EligibleShippingMethods } from '~/types';
 import { formatPrice } from '~/utils';
 import CheckCircleIcon from '../icons/CheckCircleIcon';
+import { MapsComponent } from '../MapsComponent/MapsComponent';
 
 type Props = {
 	appState: AppState;
 };
 
 export default component$<Props>(({ appState }) => {
-	const currencyCode = appState.activeOrder.currencyCode || 'USD';
-	const state = useStore<{ selectedMethodId: string; methods: EligibleShippingMethods[] }>({
+	const currencyCode = appState.activeOrder.currencyCode || 'EUR';
+	const state = useStore<{
+		selectedMethodId: string;
+		selectedMethod: EligibleShippingMethods;
+		methods: EligibleShippingMethods[];
+	}>({
 		selectedMethodId: '',
+		selectedMethod: { code: '', description: '', id: '', name: '', price: 0, priceWithTax: 0 },
 		methods: [],
+	});
+	const mapState = useStore({
+		carrier: 'PACKETA',
+		city: '',
+		country: '',
+		error: null,
+		externalId: '',
+		id: '',
+		company: '',
+		name: '',
+		nameStreet: '',
+		place: '',
+		street: '',
+		url: '',
+		branchCode: '',
+		warning: null,
+		zip: '',
+		showModal: false,
+	});
+
+	const selectShippingMethod = $(function selectShippingMethod(index: number) {
+		state.selectedMethod = state.methods[index];
+		if (state.selectedMethod.id === '5') mapState.showModal = true;
 	});
 
 	useTask$(async () => {
@@ -36,7 +65,7 @@ export default component$<Props>(({ appState }) => {
 					<div
 						key={method.id}
 						class={`relative bg-white border rounded-lg shadow-sm p-4 flex cursor-pointer focus:outline-none`}
-						onClick$={() => (state.selectedMethodId = state.methods[index].id)}
+						onClick$={() => selectShippingMethod(index)}
 					>
 						<span class="flex-1 flex">
 							<span class="flex flex-col">
@@ -47,15 +76,16 @@ export default component$<Props>(({ appState }) => {
 								</span>
 							</span>
 						</span>
-						{state.selectedMethodId === method.id && <CheckCircleIcon />}
+						{state.selectedMethod.id === method.id && <CheckCircleIcon />}
 						<span
 							class={`border-2 ${
-								state.selectedMethodId === method.id ? 'border-primary-500' : ''
+								state.selectedMethod.id === method.id ? 'border-primary-500' : ''
 							} absolute -inset-px rounded-lg pointer-events-none`}
 						></span>
 					</div>
 				))}
 			</div>
+			<div>{state.selectedMethod.id === '5' && <MapsComponent store={mapState} />}</div>
 		</div>
 	);
 });

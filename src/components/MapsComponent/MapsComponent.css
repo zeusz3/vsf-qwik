@@ -1,0 +1,110 @@
+.pickup-field {
+	display: flex;
+	flex-direction: column;
+	background: #f7f8f8;
+	gap: 1rem;
+	width: 60%;
+	padding: 32px;
+	margin: 50px;
+	border-radius: 24px;
+	box-shadow:
+		0 9px 32px #141d1f14,
+		0 1px 2px #141d1f0a;
+}
+
+.pickup-label {
+	font-size: 14px;
+	color: #4b5563;
+	font-family: sans-serif;
+}
+
+.input-group {
+	display: flex;
+	align-items: center;
+	border-radius: 16px;
+	background-color: #fff;
+}
+
+.input-text {
+	flex: 1;
+	padding: 1rem;
+	border: none;
+	font-size: 1.1rem;
+	border-radius: 16px;
+	color: #4b5563;
+	background: transparent;
+}
+
+.input-text:disabled {
+	background: white;
+	color: #222;
+}
+
+.input-addon {
+	padding: 0 0.75rem;
+	color: #9ca3af;
+}
+
+.pickup-button {
+	height: 63px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	font-weight: bold;
+	color: #e8f44a;
+	background-color: #141d1f;
+	border: none;
+	padding: 0.75rem 1.25rem;
+	border-radius: 16px;
+	font-size: 1rem;
+	cursor: pointer;
+	transition: background-color 0.2s ease;
+}
+
+.pickup-button:hover {
+	background-color: #e8f44a;
+	color: #222;
+}
+
+.modal-overlay {
+	position: fixed;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 9999;
+}
+
+.modal-box {
+	display: flex;
+	flex-direction: column;
+	width: 98%;
+	height: 98%;
+	border: none;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	background-color: white;
+	padding: 5px;
+}
+
+.modal-box__header {
+	display: flex;
+	justify-content: flex-end;
+	padding: 10px;
+}
+
+.modal-box__content {
+	width: 100%;
+	height: 100%;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+.close-button {
+	background-color: transparent;
+	font-weight: bold;
+	cursor: pointer;
+	font-size: 16px;
+}
