@@ -1,11 +1,4 @@
-import {
-	component$,
-	useStylesScoped$,
-	useSignal,
-	$,
-	useOnWindow,
-	useContext,
-} from '@qwik.dev/core';
+import { component$, useStylesScoped$, $, useOnWindow, useContext } from '@qwik.dev/core';
 import styles from './MapsComponent.css?inline';
 import { APP_STATE } from '~/constants';
 
