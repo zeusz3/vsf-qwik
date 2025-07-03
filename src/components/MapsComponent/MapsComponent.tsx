@@ -63,7 +63,10 @@ export const MapsComponent = component$((props: ChildProps) => {
 					countryCode: pickupPoint.packetaSelectedData.country.toUpperCase() ?? '',
 					fullName: pickupPoint.packetaSelectedData.name ?? '',
 					postalCode: pickupPoint.packetaSelectedData.zip ?? '',
+					province: pickupPoint.packetaSelectedData.city ?? '',
+					phoneNumber: '',
 					streetLine1: pickupPoint.packetaSelectedData.street ?? '',
+					streetLine2: pickupPoint.packetaSelectedData.url ?? '',
 				};
 			}
 			props.store.showModal = false;
