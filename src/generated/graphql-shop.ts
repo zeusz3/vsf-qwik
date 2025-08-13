@@ -2915,6 +2915,7 @@ export type ProvinceList = PaginatedList & {
 export type PublicPaymentMethod = {
 	__typename?: 'PublicPaymentMethod';
 	code: Scalars['String']['output'];
+	customFields?: Maybe<Scalars['JSON']['output']>;
 	description?: Maybe<Scalars['String']['output']>;
 	id: Scalars['ID']['output'];
 	name: Scalars['String']['output'];
@@ -2924,6 +2925,7 @@ export type PublicPaymentMethod = {
 export type PublicShippingMethod = {
 	__typename?: 'PublicShippingMethod';
 	code: Scalars['String']['output'];
+	customFields?: Maybe<Scalars['JSON']['output']>;
 	description?: Maybe<Scalars['String']['output']>;
 	id: Scalars['ID']['output'];
 	name: Scalars['String']['output'];
@@ -3718,6 +3720,7 @@ export type EligibleShippingMethodsQuery = {
 	eligibleShippingMethods: Array<{
 		__typename?: 'ShippingMethodQuote';
 		id: string;
+		code: string;
 		name: string;
 		description: string;
 		metadata?: any | null;
@@ -5605,6 +5608,7 @@ export const EligibleShippingMethodsDocument = gql`
 	query eligibleShippingMethods {
 		eligibleShippingMethods {
 			id
+			code
 			name
 			description
 			metadata
