@@ -3696,6 +3696,7 @@ export type EligibleShippingMethodsQuery = {
 	eligibleShippingMethods: Array<{
 		__typename?: 'ShippingMethodQuote';
 		id: string;
+		code: string;
 		name: string;
 		description: string;
 		metadata?: any | null;
