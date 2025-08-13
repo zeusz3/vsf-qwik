@@ -1,6 +1,7 @@
 import { Collection as CollectionGql, Order } from '~/generated/graphql';
 
 export type AppState = {
+	addressFormActive: boolean;
 	collections: CollectionGql[];
 	activeOrder: Order;
 	showCart: boolean;
