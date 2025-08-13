@@ -75,6 +75,7 @@ gql`
 	query eligibleShippingMethods {
 		eligibleShippingMethods {
 			id
+			code
 			name
 			description
 			metadata

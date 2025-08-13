@@ -42,7 +42,12 @@ export default component$<Props>(({ appState }) => {
 
 	const selectShippingMethod = $(function selectShippingMethod(index: number) {
 		state.selectedMethod = state.methods[index];
-		if (state.selectedMethod.id === '5') mapState.showModal = true;
+		if (state.selectedMethod.code === 'packeta') {
+			mapState.showModal = true;
+			appState.addressFormActive = false;
+		} else {
+			appState.addressFormActive = true;
+		}
 	});
 
 	useTask$(async () => {
@@ -85,7 +90,7 @@ export default component$<Props>(({ appState }) => {
 					</div>
 				))}
 			</div>
-			<div>{state.selectedMethod.id === '5' && <MapsComponent store={mapState} />}</div>
+			<div>{state.selectedMethod.code === 'packeta' && <MapsComponent store={mapState} />}</div>
 		</div>
 	);
 });

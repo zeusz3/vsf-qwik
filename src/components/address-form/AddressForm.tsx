@@ -22,6 +22,7 @@ export default component$<IProps>(({ shippingAddress }) => {
 								id="fullName"
 								name="fullName"
 								value={shippingAddress.fullName}
+								{...(!appState.addressFormActive ? { disabled: true } : {})}
 								autoComplete="given-name"
 								class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
 								onChange$={(_, el) => {
@@ -44,6 +45,7 @@ export default component$<IProps>(({ shippingAddress }) => {
 								name="company"
 								id="company"
 								value={shippingAddress.company}
+								{...(!appState.addressFormActive ? { disabled: true } : {})}
 								class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
 								onChange$={(_, el) => {
 									appState.shippingAddress = {
@@ -65,6 +67,7 @@ export default component$<IProps>(({ shippingAddress }) => {
 								name="streetLine1"
 								id="streetLine1"
 								value={shippingAddress.streetLine1}
+								{...(!appState.addressFormActive ? { disabled: true } : {})}
 								autoComplete="street-address"
 								onChange$={(_, el) => {
 									appState.shippingAddress = {
@@ -87,6 +90,7 @@ export default component$<IProps>(({ shippingAddress }) => {
 								name="streetLine2"
 								id="streetLine2"
 								value={shippingAddress.streetLine2}
+								{...(!appState.addressFormActive ? { disabled: true } : {})}
 								class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
 								onChange$={(_, el) => {
 									appState.shippingAddress = {
@@ -109,6 +113,7 @@ export default component$<IProps>(({ shippingAddress }) => {
 								id="city"
 								autoComplete="address-level2"
 								value={shippingAddress.city}
+								{...(!appState.addressFormActive ? { disabled: true } : {})}
 								class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
 								onChange$={(_, el) => {
 									appState.shippingAddress = { ...appState.shippingAddress, city: el.value };
@@ -127,6 +132,7 @@ export default component$<IProps>(({ shippingAddress }) => {
 									id="countryCode"
 									name="countryCode"
 									value={shippingAddress.countryCode}
+									{...(!appState.addressFormActive ? { disabled: true } : {})}
 									class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
 									onChange$={(_, el) => {
 										appState.shippingAddress = {
@@ -159,6 +165,7 @@ export default component$<IProps>(({ shippingAddress }) => {
 								name="province"
 								id="province"
 								value={shippingAddress.province}
+								{...(!appState.addressFormActive ? { disabled: true } : {})}
 								autoComplete="address-level1"
 								onChange$={(_, el) => {
 									appState.shippingAddress = {
@@ -181,6 +188,7 @@ export default component$<IProps>(({ shippingAddress }) => {
 								name="postalCode"
 								id="postalCode"
 								value={shippingAddress.postalCode}
+								{...(!appState.addressFormActive ? { disabled: true } : {})}
 								autoComplete="postal-code"
 								onChange$={(_, el) => {
 									appState.shippingAddress = {

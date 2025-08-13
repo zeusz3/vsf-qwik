@@ -52,7 +52,7 @@ export const MapsComponent = component$((props: ChildProps) => {
 				props.store.zip = pickupPoint.packetaSelectedData.zip;
 				appState.shippingAddress = {
 					city: pickupPoint.packetaSelectedData.city ?? '',
-					company: pickupPoint.packetaSelectedData.company ?? '',
+					company: pickupPoint.packetaSelectedData.branchCode ?? '',
 					countryCode: pickupPoint.packetaSelectedData.country.toUpperCase() ?? '',
 					fullName: pickupPoint.packetaSelectedData.name ?? '',
 					postalCode: pickupPoint.packetaSelectedData.zip ?? '',
