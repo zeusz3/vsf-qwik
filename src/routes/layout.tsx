@@ -52,6 +52,7 @@ export default component$(() => {
 	const availableCountriesSignal = useAvailableCountriesLoader();
 
 	const state = useStore<AppState>({
+		addressFormActive: false,
 		showCart: false,
 		showMenu: false,
 		customer: { id: CUSTOMER_NOT_DEFINED_ID, firstName: '', lastName: '' } as ActiveCustomer,
