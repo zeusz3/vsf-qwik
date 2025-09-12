@@ -1,8 +1,6 @@
 // routes/about/index.tsx
-import { component$, useContext } from '@qwik.dev/core';
-import { Link, routeLoader$ } from '@qwik.dev/router';
-import { Image } from 'qwik-image';
-import { getCollectionBySlug } from '~/providers/shop/collections/collections';
+import { component$ } from '@qwik.dev/core';
+import { Link } from '@qwik.dev/router';
 
 // export const useCollectionLoader = routeLoader$(async () => {
 //     return await getCollectionBySlug('about-us');
