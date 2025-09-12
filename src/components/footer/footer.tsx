@@ -1,4 +1,5 @@
 import { component$, useContext } from '@qwik.dev/core';
+import { Link } from '@qwik.dev/router';
 import { APP_STATE } from '~/constants';
 
 export default component$(() => {
@@ -14,7 +15,7 @@ export default component$(() => {
 			{ name: $localize`Returns`, href: '#' },
 		],
 		company: [
-			{ name: $localize`About`, href: '#' },
+			{ name: $localize`About`, href: '/about' },
 			{ name: $localize`Blog`, href: '#' },
 			{ name: $localize`Corporate responsibility`, href: '#' },
 			{ name: $localize`Press`, href: '#' },
@@ -66,9 +67,9 @@ export default component$(() => {
 								<ul class="mt-4 space-y-4">
 									{navigation.company.map((item) => (
 										<li key={item.name}>
-											<a href={item.href} class="text-base text-gray-500 hover:text-gray-600">
+											<Link href={item.href} class="text-base text-gray-500 hover:text-gray-600">
 												{item.name}
-											</a>
+											</Link>
 										</li>
 									))}
 								</ul>
