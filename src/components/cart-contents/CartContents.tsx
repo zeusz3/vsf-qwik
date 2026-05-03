@@ -58,7 +58,7 @@ export default component$<{
 								<div>
 									<div class="flex justify-between text-base font-medium text-gray-900">
 										<h3>
-											<a href={`/products/${line.productVariant.product.slug}/`}>
+											<a href={`/product/${line.productVariant.product.slug}/`}>
 												{line.productVariant.name}
 											</a>
 										</h3>
